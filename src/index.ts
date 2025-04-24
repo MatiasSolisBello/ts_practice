@@ -115,6 +115,54 @@ console.log(getNewList(arrNumber));
 // Crea una función que determine si una palabra es un palíndromo 
 // ("oso", "reconocer").
 function getPalindromo(element: string){
+    let result: string[] = element.split("")
+    let word_inverse: string[] = result.reverse()
 
+    if (result === word_inverse){
+        return "Es palindromo"
+    }
+    return "No es palindromo"
 }
-console.log(getPalindromo('reconocer'));
+console.log(getPalindromo('oso'));
+
+
+// Array de objetos con condicional
+// Tienes un array de objetos: Filtra los que tengan más de 18 años.
+const arr: any[] = [
+    {name: "Ana", age: 17}, 
+    {name: "Bruce", age: 18},
+    {name: "Luis", age: 21}
+]
+let arr_adults: any[] = arr.find((x) => x.age >= 18);
+console.log(arr_adults);
+
+
+// FizzBuzz con TypeScript Desde 1 hasta 100, imprime 
+// "Fizz" si es múltiplo de 3, 
+// "Buzz" si es múltiplo de 5 y 
+// "FizzBuzz" si es múltiplo de ambos.
+function fizzBuzz(elem: number){
+    let multiple_three: number = elem % 3;
+    let multiple_five: number = elem % 5;
+
+    if (multiple_three == 0 && multiple_five == 0){
+        return "FizzBuzz";
+    } else if (multiple_five == 0){
+        return "Buzz";
+    } else if (multiple_three == 0){
+        return "Fizz";
+    }
+    return "No es multiplo ni de 3 ni 5"
+    
+}
+console.log(fizzBuzz(20));
+
+
+// Máximo valor en un array
+// Escribe una función que devuelva el número más alto en un array de números.
+function getMaxArr(arr: number[]) {
+    return arr.reduce((max, num) => {
+        return num > max ? num : max;
+    }, arr[0]);
+}
+console.log(getMaxArr([5, 10, 45, 23]));

@@ -25,3 +25,5 @@ package.json
 ......
 npm install
 npm run start
+
+node .\01-fundamentals.ts
