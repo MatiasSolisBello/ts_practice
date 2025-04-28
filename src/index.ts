@@ -1,168 +1,176 @@
-// Suma de dos números
-//Crea dos variables a y b, asígnales valores numéricos y muestra la suma.
-let a: number = 5;
-let b: number = 10;
+class Movie{
+    name?: string;
+    protagonists?: string[];
+    actors?: string[];
 
-console.log(a + b);
+    showInCinema(){
+        console.log(`${this.name} is in cinema`);
+    }
 
-
-// Edad mínima
-// Crea una variable edad, luego usa una condicional para imprimir si alguien es mayor de edad (>= 18).
-let age: number = 18
-
-if (age >= 18) {
-    console.log('You are an adult');
-} else {
-    console.log('You are a kid');
-}
-
-
-// Par o impar
-// Escribe una función isPar(numero: number): boolean que devuelva true si el número es par.
-function isPar(number: number){
-    let result = number % 2
-    if (result !=0){
-        return "Es impar";
-    } else {
-        return "Es par";
+    constructor(name:string, protagonists:string[], actors:string[]){
+        this.name = name,
+        this.protagonists = protagonists,
+        this.actors = actors
     }
 }
-console.log(isPar(10));
+
+const movie1 = new Movie(
+    'Oppenheimer', 
+    ['Robert Oppenheimer', 'Lewis Strauss', 'Leslie Groves'],
+    ['Cillian Murphy', 'Robert Downey Jr.', 'Matt Damon']
+);
+movie1.showInCinema();
 
 
-// Iterar un array
-// Dado un array de números, imprime cada número en la consola con un for...of.
-let listNumers = [10, 45, 2, 90, 100]
-for (let i = 0; i < listNumers.length; i++) {
-    console.log(listNumers[i]);
-}
 
-
-// Contar elementos mayores a 10
-// Dado un array de números, cuenta cuántos son mayores que 10.
-let listNumers2 = [10, 45, 2, 90, 100]
-let counter:number = 0
-for (let i = 0; i < listNumers.length; i++) {
-    if (listNumers2[i] > 10){
-        counter += 1
+class Counter {
+    private value: number;
+  
+    constructor(initialValue: number = 0) {
+      this.value = initialValue;
+    }
+  
+    increment(): void {
+      this.value++;
+    }
+  
+    demecrent(): void {
+      this.value--;
+    }
+  
+    getValue(): number {
+      return this.value;
     }
 }
-console.log('counter', counter);
+  
+// Ejemplo de uso:
+const counter1 = new Counter();
+counter1.increment();
+counter1.increment();
+counter1.demecrent();
+console.log(counter1.getValue()); // Salida: 1
 
 
-// Revertir un array
-// Escribe una función que reciba un array de números y devuelva un nuevo array invertido.
-function reverseArray(arr:number[]){
-    return arr.reverse()
-}
-console.log(reverseArray([10, 20, 30, 40]));
 
+// Rectángulo
+// Crea una clase Rectangulo con ancho y alto y un método que calcule el área.
+class Rectangle {
+    width: number;
+    height: number;
 
-// Sumar elementos del array
-// Crea una función que reciba un array de números y devuelva la suma total.
-function sumArray(arr:number[]) {
-    const total = arr.reduce((total, num) => {
-        return total + num;
-    }, 0);
-   return total;
-}
-console.log(sumArray([4,1]));
-
-
-// Buscar un elemento
-// Escribe una función searchElement(arr: string[], element: string): boolean 
-// que diga si existe un elemento dentro del array.
-function searchElement(arr: string[], element: string) {
-    const result = arr.indexOf(element)
-    if (result) {
-        return true
+    constructor(width: number, height:number) {
+        this.width = width
+        this.height = height
     }
-    return false
-}
-console.log(searchElement(["Manzana", "Pera", "Limon"], "Manzana"));
 
-
-// Contar ocurrencias
-// Dado un array de strings, cuenta cuántas veces aparece una palabra específica.
-function countRepeats(arr: string[], word: string){
-    return 'FAIL'
-}
-
-let arrString: string[] = ["Juan", "Pedro", "Maria", "Francisco", "Pedro"];
-console.log(countRepeats(arrString, "Pedro"));
-
-
-// Filtrar pares
-// Crea una función que devuelva un nuevo array con solo los números pares de un 
-// array original.
-function getNewList(arr: number[]){
-    let result: number[] = []
-
-    for (let i = 0; i < arr.length; i++) {
-        const element = arr[i];
-        if (element % 2 === 0) {
-            result.push(element);
-        } 
+    calculateArea(): number{
+        return this.width * this.height;
     }
-    return result
 }
+const rectangle1 = new Rectangle(10, 5);
+console.log(rectangle1.calculateArea());
 
-let arrNumber: number[] = [1, 2, 3, 4]
-console.log(getNewList(arrNumber));
 
 
-// Palíndromo
-// Crea una función que determine si una palabra es un palíndromo 
-// ("oso", "reconocer").
-function getPalindromo(element: string){
-    let result: string[] = element.split("")
-    let word_inverse: string[] = result.reverse()
+// Cuenta bancaria
+// Clase CuentaBancaria con propiedades privadas saldo, métodos depositar(), 
+// retirar(), y verSaldo().
+class BankAccount {
+    private balance: number;
 
-    if (result === word_inverse){
-        return "Es palindromo"
+    constructor(balance: number) {
+        this.balance = balance
     }
-    return "No es palindromo"
-}
-console.log(getPalindromo('oso'));
 
-
-// Array de objetos con condicional
-// Tienes un array de objetos: Filtra los que tengan más de 18 años.
-const arr: any[] = [
-    {name: "Ana", age: 17}, 
-    {name: "Bruce", age: 18},
-    {name: "Luis", age: 21}
-]
-let arr_adults: any[] = arr.find((x) => x.age >= 18);
-console.log(arr_adults);
-
-
-// FizzBuzz con TypeScript Desde 1 hasta 100, imprime 
-// "Fizz" si es múltiplo de 3, 
-// "Buzz" si es múltiplo de 5 y 
-// "FizzBuzz" si es múltiplo de ambos.
-function fizzBuzz(elem: number){
-    let multiple_three: number = elem % 3;
-    let multiple_five: number = elem % 5;
-
-    if (multiple_three == 0 && multiple_five == 0){
-        return "FizzBuzz";
-    } else if (multiple_five == 0){
-        return "Buzz";
-    } else if (multiple_three == 0){
-        return "Fizz";
+    deposit(value: number){
+        this.balance += value;
     }
-    return "No es multiplo ni de 3 ni 5"
-    
+
+    withdraw(value: number){
+        this.balance -= value;
+    }
+
+    showBalance(): number {
+        return this.balance;
+    }
 }
-console.log(fizzBuzz(20));
+
+const account1 = new BankAccount(100)
+account1.deposit(20);
+console.log(account1.showBalance());
+account1.withdraw(10);
+console.log(account1.showBalance());
 
 
-// Máximo valor en un array
-// Escribe una función que devuelva el número más alto en un array de números.
-function getMaxArr(arr: number[]) {
-    return arr.reduce((max, num) => {
-        return num > max ? num : max;
-    }, arr[0]);
+
+// Animal (Herencia)
+// Crea una clase Animal con un método hacerSonido(), y clases hijas Perro y 
+// Gato que sobrescriben ese método.
+class Animal{
+    makeNoise(): void {
+        console.log('Make noise!');
+    } 
 }
-console.log(getMaxArr([5, 10, 45, 23]));
+
+class Dog extends Animal{
+    override makeNoise(): void {
+        console.log('Woof! Woof!');
+    } 
+}
+
+class Cat extends Animal{
+    override makeNoise(): void {
+        console.log('Miau! Miau!');
+    } 
+}
+
+const animal = new Animal();
+animal.makeNoise();
+
+const dog = new Dog();
+dog.makeNoise();
+
+const cat = new Cat();
+cat.makeNoise();
+
+
+// Estudiante y promedio
+// Clase Estudiante con un array de notas. Crea un método calcularPromedio() y 
+// uno que determine si aprueba.
+class Student{
+    grade: number[];
+
+    constructor(grade:number[]){
+        this.grade = grade
+    }
+
+    calculateAverage(): number {
+        const arr = this.grade;
+        let result = 0;
+
+        const total = arr.reduce((total, num) => {
+            return total + num;
+        }, 0);
+        result = total / arr.length
+
+        return Math.round(result)
+    } 
+
+    isPass(): boolean{
+        const average = this.calculateAverage()
+
+        if(average >= 40){
+            return true
+        } else {
+            return false
+        }
+    }
+}
+const student = new Student([50, 43, 50]);
+console.log(student.calculateAverage());
+console.log(student.isPass());
+
+
+// Interfaz Figura y clases concretas
+// Crea una interfaz Figura con un método calcularArea().
+// Implementa clases Cuadrado, Círculo, Triángulo que implementen esa interfaz.
