@@ -174,3 +174,135 @@ console.log(student.isPass());
 // Interfaz Figura y clases concretas
 // Crea una interfaz Figura con un método calcularArea().
 // Implementa clases Cuadrado, Círculo, Triángulo que implementen esa interfaz.
+interface Figure{
+    calculateArea(): number;
+}
+
+class Square implements Figure {
+    constructor(private side: number) {}
+  
+    calculateArea(): number {
+      return this.side * this.side;
+    }
+}
+
+class Circle implements Figure {
+    constructor(private radio: number) {}
+  
+    calculateArea(): number {
+      return Math.PI * (this.radio * 2)
+    }
+}
+
+class Triangle implements Figure {
+    constructor(private height: number, private base:number) {}
+  
+    calculateArea(): number {
+      return 0.5 * this.base * this.height
+    }
+}
+
+const square = new Square(4);
+console.log(square.calculateArea());
+
+const circle = new Circle(5);
+console.log(circle.calculateArea());
+
+const triangle = new Triangle(7, 5);
+console.log(triangle.calculateArea());
+
+
+// Sistema de empleados
+// Clase base Empleado con método calcularSalario().
+// Subclases EmpleadoPorHora y EmpleadoFijo que sobrescriban ese método con 
+// diferentes fórmulas
+abstract class Employee{
+    abstract calculateSalary(): void;
+}
+
+class EmployeeByHour extends Employee{
+    override calculateSalary(): void {
+        console.log('EmployeeByHour');
+    } 
+}
+
+class PermanentEmployee extends Employee{
+    override calculateSalary(): void {
+        console.log('PermanentEmployee');
+    } 
+}
+
+const employee1 = new EmployeeByHour();
+employee1.calculateSalary();
+
+const employee2 = new PermanentEmployee();
+employee2.calculateSalary();
+
+
+// Inventario con Encapsulamiento
+// Clase Producto con nombre, precio y stock (privado).
+// Métodos para vender productos, reponer stock y consultar disponibilidad.
+class Product {
+    public id: number;
+    public name: string;
+    public price: number;
+    private stock: number;
+
+    constructor(id:number, name:string, price:number, stock:number){
+        this.id = id
+        this.name = name
+        this.price = price
+        this.stock = stock
+    }
+
+    sellProduct(): string {
+        if (this.stock > 0) {
+            this.stock -= 1;
+            return `${this.name} sold. Stock: ${this.stock}`
+        } else {
+            return `No stock available for ${this.name}.`;
+        }
+    }
+
+    getStock(): number {
+        return this.stock
+    }
+}
+
+const product1 = new Product(1, 'Coca Cola 3Lt', 5000, 3)
+const product2 = new Product(2, 'Cono de Papas fritas', 1000, 10)
+const product3 = new Product(3, 'Empanada de Queso', 2000, 7)
+
+console.log(product1.sellProduct());
+console.log(product3.sellProduct());
+
+console.log(product3.getStock());
+
+
+// Simulador de combate (Polimorfismo)
+// Clase abstracta Personaje con método abstracto atacar().
+// Subclases Guerrero, Mago, Arquero que implementen ataques distintos.
+abstract class Character {
+    abstract attack(): void;
+}
+
+class Warrior extends Character{
+    override attack(): void {
+        console.log('warrior attack');
+    } 
+}
+
+class Wizard extends Character{
+    override attack(): void {
+        console.log('Wizard attack');
+    } 
+}
+
+class Archer extends Character{
+    override attack(): void {
+        console.log('Archer attack');
+    } 
+}
+
+const warrior1 = new Warrior();
+warrior1.attack();
